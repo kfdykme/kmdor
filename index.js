@@ -26,7 +26,9 @@ function Do(obj, cwd, doOnEnd) {
     if (next != null) {
       Do(next, cwd, doOnEnd)
     } else {
-      doOnEnd()
+      if (doOnEnd != null) {
+        doOnEnd()
+      }
     }
   })
 }
