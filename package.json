@@ -1,6 +1,6 @@
 {
   "name": "kmdor",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "a tool to use shel common by js",
   "main": "src/index.js",
   "scripts": {

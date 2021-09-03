@@ -5,15 +5,21 @@ declare interface CmdReq {
 }
 
 declare interface CmdArray {
-    cmd: List<string>;
+    cmd: string[]
+} 
+
+declare interface Kmdor {
+    Do(obj: string[] | any[], cmd: string, next: Function): void
+    /**
+     * 
+     * @param normalLogFunc default is console.log
+     * @param errorLogFunc default is console.error
+     */
+    init(normalLogFunc: Function, errorLogFunc?: Function): void 
 }
 
+declare const kmdor: Kmdor
 
-declare function Do(obj: string[] | any[], cmd: string, next: Function): void
-
-/**
- * 
- * @param normalLogFunc default is console.log
- * @param errorLogFunc default is console.error
- */
-declare function init(normalLogFunc: Function, errorLogFunc?: Function): void 
+declare module "kmdor" {
+    export = kmdor
+}
