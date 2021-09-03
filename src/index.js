@@ -1,10 +1,27 @@
 'use strict'
 
+
+
 /**
  * @module Kmdor
  * @desc 一个js调用命令行的工具
  * @example Do(['ls',['ls -l']], './', function () { console.info('end')})
  */
+
+function Do(obj, cwd, doOnEnd) {
+  if (typeof obj === 'object' && obj instanceof Array && obj.filter((item) => typeof item === 'object') === 0) { 
+      let cmd = []
+      const head = cmd
+      obj.forEach((str) => {
+        cmd.push(str)
+        cmd.push([])
+        cmd = cmd[1]
+      })
+      _Do(head, cwd, doOnEnd)
+   } else if (typeof obj === 'object' && obj instanceof Array && obj.filter((item) => typeof item === 'object') !== 0) { 
+     _Do(obj, cwd, doOnEnd)
+   }
+}
 
 /**
  * @method Do
@@ -12,7 +29,7 @@
  * @param {string} cwd　运行命令的当前目录
  * @param {function} doOnEnd　运行结束后所进行的操作
  */
-function Do(obj, cwd, doOnEnd) {
+function _Do(obj, cwd, doOnEnd) {
   if (cwd == null) {
     cwd = './'
   }
@@ -77,7 +94,7 @@ function init(log, err) {
 }
 
 
-module.exports.Do = Do
+module.exports.Do = Do 
 module.exports.Log = Log
 module.exports.Error = Error
 module.exports.init = init
