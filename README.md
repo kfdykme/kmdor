@@ -8,9 +8,10 @@ This is a tool you can use shell command by js.
 ``` javascript
 const kmdor = require('kmdor')
 
-kmdor.Do(['ls', ['ls -a']], './', function () {
+kmdor.Do(['ls', 'ls -a'], './', function () {
   console.info('end function ')
 })
+
 ```
 
 ## Methods
@@ -20,7 +21,7 @@ kmdor.Do(['ls', ['ls -a']], './', function () {
 ```
 /**
  * @method Do
- * @param {array} obj 一个结构为['命令', [' 第二个命令', ['第三个命令']]]　的数组
+ * @param {array} obj 一个结构为['命令', [' 第二个命令', ['第三个命令']]]　的数组 或者 ['cmd', 'cmd2', 'cmd3']
  * @param {string} cwd　运行命令的当前目录
  * @param {function} doOnEnd　运行结束后所进行的操作
  */

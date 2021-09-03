@@ -9,16 +9,16 @@
  */
 
 function Do(obj, cwd, doOnEnd) {
-  if (typeof obj === 'object' && obj instanceof Array && obj.filter((item) => typeof item === 'object') === 0) { 
+  if (typeof obj === 'object' && obj instanceof Array && obj.filter((item) => typeof item === 'object').length === 0) { 
       let cmd = []
       const head = cmd
       obj.forEach((str) => {
         cmd.push(str)
         cmd.push([])
         cmd = cmd[1]
-      })
+      }) 
       _Do(head, cwd, doOnEnd)
-   } else if (typeof obj === 'object' && obj instanceof Array && obj.filter((item) => typeof item === 'object') !== 0) { 
+   } else if (typeof obj === 'object' && obj instanceof Array && obj.filter((item) => typeof item === 'object').length !== 0) { 
      _Do(obj, cwd, doOnEnd)
    }
 }
@@ -32,6 +32,11 @@ function Do(obj, cwd, doOnEnd) {
 function _Do(obj, cwd, doOnEnd) {
   if (cwd == null) {
     cwd = './'
+  }
+
+  if (obj.length < 2) {
+    doOnEnd()
+    return
   }
 
   let order = obj[0]
